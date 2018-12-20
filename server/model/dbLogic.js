@@ -1,6 +1,6 @@
 const mongoose = require(`mongoose`)
 const City = require(`./city`)
-mongoose.connect(`mongodb://localhost/weatherDB`, { useNewUrlParser: true })
+mongoose.connect(process.env.CONNECTION_STRING||`mongodb://localhost/weatherDB`, { useNewUrlParser: true })
 
 const getCities =async function () {
     let cities = await City.find({})

@@ -12,6 +12,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(`/`, api)
 const port = 1203
 
-app.listen(port, function () {
+app.listen(process.env.PORT||port, function () {
     console.log(`Hot ${port} on its way!`)
 })
