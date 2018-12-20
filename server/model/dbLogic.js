@@ -3,23 +3,18 @@ const City = require(`./city`)
 mongoose.connect(`mongodb://localhost/weatherDB`, { useNewUrlParser: true })
 
 const getCities =async function () {
-    let thing
-    await City.find({},async function(err,cities){
-        console.log(cities)
-        thing = cities
-    })
-    return thing
-    // let x=JSON.parse(y)
-    
+    let cities = await City.find({})
+    return cities
 }
 const saveCity = function (cityInfo) {
     city = new City(cityInfo)
     city.save()
 }
 const deleteCity = function (city) {
-    City.find(city, function (city) {
-        city.remove()
-    })
+    City.findOneAndDelete({name: city}).exec()
+    // City.findOne({name: city}, function (err ,city) {
+    //     city.remove()
+    // })
 }
 
 let dbLogic = {
